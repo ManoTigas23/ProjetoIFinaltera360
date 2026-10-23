@@ -1,0 +1,16 @@
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\BackEnd\Repositorio\bin\Debug\net10.0\Repositorio.deps.json
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\bin\Debug\net10.0\Repositorio.dll
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\bin\Debug\net10.0\Repositorio.pdb
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\bin\Debug\net10.0\Dominio.dll
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\bin\Debug\net10.0\Dominio.pdb
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\obj\Debug\net10.0\Repositorio.csproj.AssemblyReference.cache
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\obj\Debug\net10.0\Repositorio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\obj\Debug\net10.0\Repositorio.AssemblyInfoInputs.cache
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\obj\Debug\net10.0\Repositorio.AssemblyInfo.cs
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\obj\Debug\net10.0\Repositorio.csproj.CoreCompileInputs.cache
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\obj\Debug\net10.0\Repositorio.sourcelink.json
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\BackEnd\Repositorio\obj\Debug\net10.0\Reposito.F4C96B80.Up2Date
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\obj\Debug\net10.0\Repositorio.dll
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\obj\Debug\net10.0\refint\Repositorio.dll
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Repositorio\obj\Debug\net10.0\Repositorio.pdb
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\BackEnd\Repositorio\obj\Debug\net10.0\ref\Repositorio.dll

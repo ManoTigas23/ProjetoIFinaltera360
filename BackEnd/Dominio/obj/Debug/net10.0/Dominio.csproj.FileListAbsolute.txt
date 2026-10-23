@@ -1,0 +1,12 @@
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\bin\Debug\net10.0\Dominio.deps.json
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\bin\Debug\net10.0\Dominio.dll
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\bin\Debug\net10.0\Dominio.pdb
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\obj\Debug\net10.0\Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\obj\Debug\net10.0\Dominio.AssemblyInfoInputs.cache
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\obj\Debug\net10.0\Dominio.AssemblyInfo.cs
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\obj\Debug\net10.0\Dominio.csproj.CoreCompileInputs.cache
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\obj\Debug\net10.0\Dominio.sourcelink.json
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\obj\Debug\net10.0\Dominio.dll
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\obj\Debug\net10.0\refint\Dominio.dll
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\obj\Debug\net10.0\Dominio.pdb
+C:\Users\tiago\OneDrive\Área de Trabalho\ProjetoIFinaltera360\backend\Dominio\obj\Debug\net10.0\ref\Dominio.dll
