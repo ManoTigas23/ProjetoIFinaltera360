@@ -2,8 +2,8 @@ namespace Dominio.Entidades;
 
 public class Jogo
 {
-    public int jogoId {get; set;}
-    public string nomeJogo {get; set;}
-    public string descricao {get; set;}
-    public string capaJogo {get; set;}
+    public int JogoId {get; set;}
+    public string NomeJogo {get; set;}
+    public string Descricao {get; set;}
+    public string CapaJogo {get; set;}
 }

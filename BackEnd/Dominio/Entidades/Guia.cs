@@ -2,10 +2,10 @@ namespace Dominio.Entidades;
 
 public class Guia
 {
-    public int guiaId {get; set;}
-    public string titulo {get; set;}
-    public string conteudo {get; set;}
-    public string videoYoutube {get; set;}
-    public int jogoId {get; set;}
-    public int usuarioId {get; set;}
+    public int GuiaId {get; set;}
+    public string Titulo {get; set;}
+    public string Conteudo {get; set;}
+    public string VideoYoutube {get; set;}
+    public int JogoId {get; set;}
+    public int UsuarioId {get; set;}
 }

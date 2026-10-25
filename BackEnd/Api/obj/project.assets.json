@@ -3419,8 +3419,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\Dominio.csproj": {
-              "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\Dominio.csproj"
+            "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Dominio\\Dominio.csproj": {
+              "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Dominio\\Dominio.csproj"
             },
             "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Repositorio\\Repositorio.csproj": {
               "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Repositorio\\Repositorio.csproj"
