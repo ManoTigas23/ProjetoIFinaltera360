@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Dominio\\Dominio.csproj": {}
+    "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\Dominio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Dominio\\Dominio.csproj": {
+    "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Dominio\\Dominio.csproj",
+        "projectUniqueName": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\Dominio.csproj",
         "projectName": "Dominio",
-        "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Dominio\\Dominio.csproj",
+        "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\Dominio.csproj",
         "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Dominio\\obj\\",
+        "outputPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config"

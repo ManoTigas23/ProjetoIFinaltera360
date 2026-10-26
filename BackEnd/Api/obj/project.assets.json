@@ -3399,11 +3399,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\api\\Api.csproj",
+      "projectUniqueName": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Api\\Api.csproj",
       "projectName": "Api",
-      "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\api\\Api.csproj",
+      "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Api\\Api.csproj",
       "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\api\\obj\\",
+      "outputPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3419,11 +3419,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Dominio\\Dominio.csproj": {
-              "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Dominio\\Dominio.csproj"
+            "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\Dominio.csproj": {
+              "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\Dominio.csproj"
             },
-            "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Repositorio\\Repositorio.csproj": {
-              "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\backend\\Repositorio\\Repositorio.csproj"
+            "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Repositorio\\Repositorio.csproj": {
+              "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Repositorio\\Repositorio.csproj"
             }
           }
         }
@@ -3920,7 +3920,7 @@
       "code": "NU1902",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'System.Security.Cryptography.Pkcs' 9.0.11 tem uma moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-2fmv-rv2c-59x7",
+      "message": "Package 'System.Security.Cryptography.Pkcs' 9.0.11 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-2fmv-rv2c-59x7",
       "libraryId": "System.Security.Cryptography.Pkcs",
       "targetGraphs": [
         "net10.0"
@@ -3930,7 +3930,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "O pacote 'System.Security.Cryptography.Pkcs' 9.0.11 tem uma alta vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-846f-f764-76mx",
+      "message": "Package 'System.Security.Cryptography.Pkcs' 9.0.11 has a known high severity vulnerability, https://github.com/advisories/GHSA-846f-f764-76mx",
       "libraryId": "System.Security.Cryptography.Pkcs",
       "targetGraphs": [
         "net10.0"
