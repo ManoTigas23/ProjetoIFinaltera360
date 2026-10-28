@@ -4,7 +4,7 @@ using Dominio.Interfaces;
 
 namespace Repositorio;
 
-public abstract class BaseRepositorio<T> : IBaseRepositorio<T> where T : class
+public  class BaseRepositorio<T> : IBaseRepositorio<T> where T : class
 {
     protected readonly ProjetoDbContext _contexto;
 

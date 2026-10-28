@@ -1,0 +1,18 @@
+.card-clicavel {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-clicavel:hover {
+  border-color: #61dafb;
+  transform: translateY(-5px);
+}
+
+.btn-ver-guias {
+  margin-top: 15px;
+  color: #61dafb;
+  font-weight: bold;
+  font-size: 0.9rem;
+}

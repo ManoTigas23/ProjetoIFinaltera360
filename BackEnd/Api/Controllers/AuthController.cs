@@ -22,6 +22,27 @@ public class AuthController : ControllerBase
         _configuration = configuration;
     }
 
+    [HttpPost("registrar")]
+    public async Task<IActionResult> Registrar([FromBody] RegistroDTO dto)
+    {
+        var usuarios = await _usuarioRepositorio.ObterTodosAsync();
+        if (usuarios.Any(u => u.Email == dto.Email))
+        {
+            return BadRequest("Este e-mail já está em uso.");
+        }
+
+        var novoUsuario = new Usuario
+        {
+            Nome = dto.Nome,
+            Email = dto.Email,
+            Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha)
+        };
+
+        await _usuarioRepositorio.CriarAsync(novoUsuario);
+
+        return Ok(new { mensagem = "Utilizador registado com sucesso!" });
+    }
+
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDTO dto)
     {

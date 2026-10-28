@@ -12,6 +12,13 @@ var builder = WebApplication.CreateBuilder(args);
 var chaveJwt = builder.Configuration["Jwt:JogosIndiesSaoGeralmenteMelhores"] 
     ?? throw new InvalidOperationException("Chave JWT não configurada.");
 
+
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options => {
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+    });
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -34,7 +41,10 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddDbContext<ProjetoDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoPadrao")));
+    options.UseSqlite(
+        builder.Configuration.GetConnectionString("ConexaoPadrao"),
+        b => b.MigrationsAssembly("Api")
+    ));
 
 builder.Services.AddScoped(typeof(IBaseRepositorio<>), typeof(BaseRepositorio<>));
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
@@ -43,14 +53,13 @@ builder.Services.AddScoped<IGuiaRepositorio, GuiaRepositorio>();
 builder.Services.AddScoped<IComentarioRepositorio, ComentarioRepositorio>();
 builder.Services.AddScoped<IGuiaSalvoRepositorio, GuiaSalvoRepositorio>();
 
-builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirFrontend", policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins("http://localhost:3000")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -63,12 +72,11 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
 app.UseCors("PermitirFrontend");
+app.UseHttpsRedirection();       
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();

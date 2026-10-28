@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { TokenServico } from '../../services/TokenServico';
-import { AutenticacaoAPI } from '../../services/AutenticacaoAPI';
-import './TopBar.css'; 
+import { TokenServico } from '../Services/TokenServico';
+import { AutenticacaoAPI } from '../Services/AutenticacaoAPI';
+import styles from './TopBar.module.css';
 
 export function TopBar() {
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ export function TopBar() {
       </div>
 
       <nav className="topbar-nav">
-        <Link to="/jogos">Jogos</Link>
-        <Link to="/guias">Guias</Link>
+      <Link to="/" className="btn-jogos">Jogos</Link>
+      <Link to="/guias">Guias</Link>        
       </nav>
 
       <div className="topbar-user">
@@ -43,7 +43,7 @@ export function TopBar() {
         ) : (
           <>
             <Link to="/login" className="btn-login">Entrar</Link>
-            <Link to="/registrar" className="btn-registro">Cadastrar</Link>
+            <Link to="/registro" className="btn-registro">Cadastrar</Link>           
           </>
         )}
       </div>
