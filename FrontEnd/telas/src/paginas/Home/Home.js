@@ -24,7 +24,9 @@ export function Home() {
   }, []);
 
   const handleSelecionarJogo = (jogoId) => {
-    navigate(`/jogo/${jogoId}`);
+    if (jogoId) {
+      navigate(`/jogo/${jogoId}`);
+    }
   };
 
   if (carregando) {
@@ -41,25 +43,29 @@ export function Home() {
       <section className="seccao">
         <h2>Catálogo de Jogos</h2>
         <div className="grid-cards">
-         {jogos.map((jogo) => (
-          <div
-            key={jogo.jogoId || jogo.id}
-            className="card card-clicavel"
-            onClick={() => handleSelecionarJogo(jogo.jogoId || jogo.id)}
-          >
-            {(jogo.capaJogo || jogo.capa) && (
-              <img 
-                src={jogo.capaJogo || jogo.capa} 
-                alt={jogo.nomeJogo || jogo.nome} 
-                style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px 8px 0 0' }}
-              />
-            )}
-
-            <h3>{jogo.nomeJogo || jogo.nome || jogo.titulo}</h3>
-            <p>{jogo.descricao || 'Clique para ver os guias deste jogo.'}</p>
-            <span className="btn-ver-guias">Ver Guias →</span>
-          </div>
-        ))}
+          {jogos.map((jogo) => {
+            const idDoJogo = jogo.jogoId || jogo.id || jogo.JogoId;
+            return (
+              <div
+                key={idDoJogo}
+                className="card card-clicavel"
+                onClick={() => handleSelecionarJogo(idDoJogo)}
+              >
+                {(jogo.capaJogo || jogo.capa) && (
+                  <img
+                    src={jogo.capaJogo || jogo.capa}
+                    alt={jogo.nomeJogo || jogo.nome}
+                    style={{ width: '100%', height: '260px', objectFit: 'cover', borderRadius: '8px 8px 0 0' }}
+                  />
+                )}
+                <div style={{ padding: '12px' }}>
+                  <h3>{jogo.nomeJogo || jogo.nome || jogo.titulo}</h3>
+                  <p>{jogo.descricao || 'Clique para ver os guias deste jogo.'}</p>
+                  <span className="btn-ver-guias">Ver Guias →</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
     </div>

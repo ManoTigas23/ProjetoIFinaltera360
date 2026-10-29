@@ -6,7 +6,8 @@ import { TokenServico } from '../../Services/TokenServico';
 import styles from './CriarGuia.module.css';
 
 export function CriarGuia() {
-  const { id } = useParams();
+  const params = useParams();
+  const idDoJogo = params.id || params.jogoId; 
   const navigate = useNavigate();
 
   const [jogo, setJogo] = useState(null);
@@ -17,14 +18,17 @@ export function CriarGuia() {
   const [carregando, setCarregando] = useState(false);
 
   useEffect(() => {
-    if (!TokenServico.estaAutenticado()) {
+    const estaAutenticado = TokenServico.usuarioAutenticado ? TokenServico.usuarioAutenticado() : TokenServico.obterToken() !== null;
+    if (!estaAutenticado) {
       navigate('/login');
       return;
     }
 
     async function carregarJogo() {
+      if (!idDoJogo) return;
       try {
-        const dadosJogo = await JogoAPI.obterPorId(parseInt(id, 10));
+        const idNum = parseInt(idDoJogo, 10);
+        const dadosJogo = await JogoAPI.obterPorId(idNum);
         setJogo(dadosJogo);
       } catch (err) {
         console.error('Erro ao buscar jogo:', err);
@@ -33,39 +37,51 @@ export function CriarGuia() {
     }
 
     carregarJogo();
-  }, [id, navigate]);
+  }, [idDoJogo, navigate]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setErro('');
-    setCarregando(true);
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setErro('');
+  setCarregando(true);
 
-    try {
-      const novoGuia = {
-        jogoId: parseInt(id, 10),
-        titulo,
-        conteudo,
-        videoYoutube: videoYoutube || null
-      };
+  try {
+    const idJogoNum = parseInt(idDoJogo, 10);
+    
+    const usuarioIdNum = TokenServico.obterUsuarioId 
+      ? parseInt(TokenServico.obterUsuarioId(), 10) 
+      : parseInt(localStorage.getItem('usuarioId') || '1', 10); 
 
-      await GuiaAPI.criar(novoGuia);
-      navigate(`/jogo/${id}`);
-    } catch (err) {
-      console.error('Erro ao criar guia:', err);
-      setErro('Erro ao publicar o guia. Tente novamente.');
-    } finally {
-      setCarregando(false);
-    }
-  };
+    const guiaCriacaoDto = {
+      titulo: titulo,
+      conteudo: conteudo,
+      usuarioId: usuarioIdNum,
+      jogoId: idJogoNum,
+      videoYoutube: videoYoutube || ''
+    };
+
+    await GuiaAPI.cadastrar(guiaCriacaoDto);
+    navigate(`/jogo/${idJogoNum}`);
+  } catch (err) {
+    console.error('Erro ao publicar guia:', err.response?.data || err);
+    setErro('Erro ao publicar o guia. Verifique se está autenticado e tente novamente.');
+  } finally {
+    setCarregando(false);
+  }
+};
+  const nomeExibicaoJogo = jogo?.nomeJogo || jogo?.NomeJogo || jogo?.nome || jogo?.titulo || 'Jogo';
 
   return (
     <div className={styles.criarGuiaContainer}>
-      <button className={styles.btnVoltar} onClick={() => navigate(`/jogo/${id}`)}>
+      <button 
+        type="button"
+        className={styles.btnVoltar} 
+        onClick={() => navigate(`/jogo/${idDoJogo}`)}
+      >
         ← Voltar para o Jogo
       </button>
 
       <div className={styles.formCard}>
-        <h2>Criar Novo Guia {jogo ? `para ${jogo.nome || jogo.titulo}` : ''} 📝</h2>
+        <h2>Criar Novo Guia para {nomeExibicaoJogo} 📝</h2>
 
         {erro && <div className={styles.mensagemErro}>{erro}</div>}
 
@@ -105,7 +121,11 @@ export function CriarGuia() {
             />
           </div>
 
-          <button type="submit" className={styles.btnSubmit} disabled={carregando}>
+          <button 
+            type="submit" 
+            className={styles.btnSubmit} 
+            disabled={carregando}
+          >
             {carregando ? 'Publicando...' : 'Publicar Guia'}
           </button>
         </form>

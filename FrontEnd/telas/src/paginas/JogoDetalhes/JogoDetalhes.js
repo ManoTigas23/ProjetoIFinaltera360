@@ -13,7 +13,9 @@ export function JogoDetalhes() {
   const [guias, setGuias] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
-  const usuarioEstaLogado = TokenServico.estaAutenticado();
+  const usuarioEstaLogado = TokenServico.usuarioAutenticado 
+    ? TokenServico.usuarioAutenticado() 
+    : TokenServico.obterToken() !== null;
 
   useEffect(() => {
     async function carregarDadosDoJogo() {
@@ -26,12 +28,15 @@ export function JogoDetalhes() {
           GuiaAPI.obterTodos()
         ]);
 
-        setJogo(dadosJogo);
+        const jogoFinal = Array.isArray(dadosJogo) ? dadosJogo[0] : dadosJogo;
+        setJogo(jogoFinal);
 
-        const guiasFiltrados = todosGuias.filter(
-          (g) => g.jogoId === jogoIdNum || g.jogoID === jogoIdNum
-        );
-        setGuias(guiasFiltrados);
+        if (Array.isArray(todosGuias)) {
+          const guiasFiltrados = todosGuias.filter(
+            (g) => (g.jogoId || g.jogoID || g.JogoId) === jogoIdNum
+          );
+          setGuias(guiasFiltrados);
+        }
       } catch (erro) {
         console.error('Erro ao carregar os detalhes do jogo:', erro);
       } finally {
@@ -41,6 +46,23 @@ export function JogoDetalhes() {
 
     carregarDadosDoJogo();
   }, [id]);
+
+  const handleSalvarGuia = (guia) => {
+    const salvosAtuais = JSON.parse(localStorage.getItem('guiasSalvos') || '[]');
+    const guiaIdTarget = guia.guiaId || guia.GuiaId || guia.id;
+
+    const jaSalvo = salvosAtuais.some(
+      (g) => (g.guiaId || g.GuiaId || g.id) === guiaIdTarget
+    );
+
+    if (!jaSalvo) {
+      salvosAtuais.push(guia);
+      localStorage.setItem('guiasSalvos', JSON.stringify(salvosAtuais));
+      alert('Guia salvo no seu perfil com sucesso!');
+    } else {
+      alert('Este guia já está salvo no seu perfil!');
+    }
+  };
 
   if (carregando) {
     return (
@@ -61,21 +83,36 @@ export function JogoDetalhes() {
     );
   }
 
+  const nomeJogo = jogo.nomeJogo || jogo.NomeJogo || jogo.nome || jogo.titulo;
+  const capaJogo = jogo.capaJogo || jogo.CapaJogo || jogo.capa;
+
   return (
     <div className={styles.detalhesContainer}>
       <section className={styles.headerJogo}>
         <button className={styles.btnVoltar} onClick={() => navigate('/')}>
           ← Voltar
         </button>
-        <h1>{jogo.nome || jogo.titulo}</h1>
-        <p className={styles.descricaoJogo}>{jogo.descricao || 'Sem descrição disponível.'}</p>
+
+        <div style={{ display: 'flex', gap: '16px', marginTop: '12px', alignItems: 'center' }}>
+          {capaJogo && (
+            <img
+              src={capaJogo}
+              alt={nomeJogo}
+              style={{ width: '80px', height: '105px', objectFit: 'cover', borderRadius: '6px' }}
+            />
+          )}
+          <div>
+            <h1 style={{ color: '#fff', fontSize: '1.4rem', margin: '0 0 6px 0' }}>{nomeJogo}</h1>
+            <p className={styles.descricaoJogo}>{jogo.descricao || jogo.Descricao || 'Sem descrição disponível.'}</p>
+          </div>
+        </div>
       </section>
 
       <section className={styles.seccaoGuias}>
         <div className={styles.topoGuias}>
           <h2>Guias da Comunidade ({guias.length})</h2>
           {usuarioEstaLogado && (
-            <button 
+            <button
               className={styles.btnCriarGuia}
               onClick={() => navigate(`/jogo/${id}/novo-guia`)}
             >
@@ -87,18 +124,39 @@ export function JogoDetalhes() {
         <div className={styles.listaGuias}>
           {guias.length > 0 ? (
             guias.map((guia) => (
-              <article key={guia.guiaId || guia.id} className={styles.guiaCard}>
-                <h3>{guia.titulo}</h3>
-                <p>{guia.conteudo}</p>
-                {guia.videoYoutube && (
-                  <a 
-                    href={guia.videoYoutube} 
-                    target="_blank" 
+              <article key={guia.guiaId || guia.GuiaId || guia.id} className={styles.guiaCard}>
+                <h3>{guia.titulo || guia.Titulo}</h3>
+                <p>{guia.conteudo || guia.Conteudo}</p>
+
+                {(guia.videoYoutube || guia.VideoYoutube) && (
+                  <a
+                    href={guia.videoYoutube || guia.VideoYoutube}
+                    target="_blank"
                     rel="noreferrer"
                     className={styles.linkVideo}
                   >
                     📺 Assistir Tutorial no YouTube
                   </a>
+                )}
+
+                {usuarioEstaLogado && (
+                  <div style={{ marginTop: '12px' }}>
+                    <button
+                      type="button"
+                      onClick={() => handleSalvarGuia(guia)}
+                      style={{
+                        padding: '6px 12px',
+                        backgroundColor: '#334155',
+                        color: '#fff',
+                        border: '1px solid #475569',
+                        borderRadius: '6px',
+                        cursor: 'pointer',
+                        fontSize: '0.85rem'
+                      }}
+                    >
+                      📌 Salvar Guia
+                    </button>
+                  </div>
                 )}
               </article>
             ))

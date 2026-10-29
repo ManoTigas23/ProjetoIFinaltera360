@@ -1,18 +1,55 @@
-.card-clicavel {
+.gridCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #1e1e2f;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
-.card-clicavel:hover {
-  border-color: #61dafb;
+.card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-.btn-ver-guias {
-  margin-top: 15px;
-  color: #61dafb;
-  font-weight: bold;
+.capaJogo {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.cardConteudo {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cardConteudo h3 {
+  color: #ffffff;
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.cardConteudo p {
+  color: #a0a0b8;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.btnVerGuias {
+  color: #6366f1;
+  font-weight: 600;
   font-size: 0.9rem;
 }

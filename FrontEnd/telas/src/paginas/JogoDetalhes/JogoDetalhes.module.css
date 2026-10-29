@@ -1,72 +1,73 @@
 .detalhesContainer {
   max-width: 1000px;
   margin: 0 auto;
-  color: #fff;
+  padding: 20px;
+}
+
+/* Header compacto do jogo */
+.headerJogo {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .btnVoltar {
   background: transparent;
-  border: 1px solid #444;
-  color: #aaa;
-  padding: 8px 16px;
+  color: #94a3b8;
+  border: 1px solid #475569;
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  margin-bottom: 15px;
+  font-size: 0.85rem;
   transition: all 0.2s ease;
 }
 
 .btnVoltar:hover {
-  background-color: #333;
+  background: #334155;
   color: #fff;
 }
 
-.headerJogo {
-  background: linear-gradient(135deg, #2c2d3c, #1a1a24);
-  padding: 30px;
-  border-radius: 12px;
-  border: 1px solid #333;
-  margin-bottom: 30px;
-}
-
-.headerJogo h1 {
-  margin-top: 10px;
-  color: #61dafb;
-  font-size: 2.2rem;
-}
-
 .descricaoJogo {
-  color: #ccc;
-  font-size: 1.05rem;
-  line-height: 1.6;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Guias */
+.seccaoGuias {
+  margin-top: 20px;
 }
 
 .topoGuias {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #333;
-  padding-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .topoGuias h2 {
+  color: #f8fafc;
+  font-size: 1.3rem;
   margin: 0;
 }
 
 .btnCriarGuia {
-  background-color: #61dafb;
-  color: #1a1a24;
+  background-color: #38bdf8;
+  color: #0f172a;
   border: none;
-  font-weight: bold;
-  padding: 10px 18px;
-  border-radius: 6px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .btnCriarGuia:hover {
-  transform: translateY(-2px);
-  background-color: #4fa8c7;
+  background-color: #7dd3fc;
 }
 
 .listaGuias {
@@ -76,29 +77,30 @@
 }
 
 .guiaCard {
-  background-color: #242533;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid #333;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 18px;
 }
 
 .guiaCard h3 {
-  margin-top: 0;
-  color: #61dafb;
+  color: #38bdf8;
+  margin: 0 0 8px 0;
 }
 
 .guiaCard p {
-  color: #ccc;
+  color: #e2e8f0;
   line-height: 1.5;
-  white-space: pre-line;
+  font-size: 0.95rem;
+  margin: 0 0 12px 0;
 }
 
 .linkVideo {
   display: inline-block;
-  margin-top: 12px;
-  color: #ff4757;
+  color: #38bdf8;
   text-decoration: none;
-  font-weight: bold;
+  font-size: 0.9rem;
+  margin-top: 6px;
 }
 
 .linkVideo:hover {
@@ -106,9 +108,9 @@
 }
 
 .semGuias {
-  background-color: #1a1a24;
-  padding: 30px;
   text-align: center;
+  padding: 30px;
+  background: #1e293b;
   border-radius: 8px;
-  color: #888;
+  color: #94a3b8;
 }

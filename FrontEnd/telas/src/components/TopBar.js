@@ -14,27 +14,26 @@ export function TopBar() {
   };
 
   return (
-    <header className="topbar">
-      <div className="topbar-logo">
+    <header className={styles.topbar}>
+      <div className={styles.topbarLogo}>
         <Link to="/">🎮 ProjetoIndie</Link>
       </div>
 
-      <nav className="topbar-nav">
-      <Link to="/" className="btn-jogos">Jogos</Link>
-      <Link to="/guias">Guias</Link>        
+      <nav className={styles.topbarNav}>
+        <Link to="/" className={styles.btnJogos}>Jogos</Link>
       </nav>
 
-      <div className="topbar-user">
+      <div className={styles.topbarUser}>
         {estaAutenticado ? (
           <>
-            <button 
-              className="btn-perfil" 
+            <button
+              className={styles.btnPerfil}
               onClick={() => navigate('/perfil')}
             >
               👤 Meu Perfil
             </button>
-            <button 
-              className="btn-logout" 
+            <button
+              className={styles.btnLogout}
               onClick={handleLogout}
             >
               Sair
@@ -42,8 +41,8 @@ export function TopBar() {
           </>
         ) : (
           <>
-            <Link to="/login" className="btn-login">Entrar</Link>
-            <Link to="/registro" className="btn-registro">Cadastrar</Link>           
+            <Link to="/login" className={styles.btnLogin}>Entrar</Link>
+            <Link to="/registro" className={styles.btnRegistro}>Cadastrar</Link>
           </>
         )}
       </div>

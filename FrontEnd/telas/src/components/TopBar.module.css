@@ -2,62 +2,114 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 24px;
-  background-color: #1a1a24;
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 12px 32px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #334155;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-.topbar-logo a {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #61dafb;
+.topbarLogo a {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #38bdf8;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
 }
 
-.topbar-nav a {
-  margin: 0 15px;
-  color: #ccc;
+.topbarLogo a:hover {
+  color: #7dd3fc;
+}
+
+.topbarNav {
+  display: flex;
+  gap: 20px;
+}
+
+.btnJogos {
+  color: #f8fafc;
   text-decoration: none;
   font-weight: 500;
-}
-
-.topbar-nav a:hover {
-  color: #fff;
-}
-
-.topbar-user {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.topbar-user button, 
-.topbar-user a {
-  padding: 8px 14px;
+  font-size: 0.95rem;
+  padding: 6px 14px;
   border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btnJogos:hover {
+  background: #334155;
+  color: #38bdf8;
+}
+
+.topbarUser {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btnPerfil {
+  background: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  padding: 7px 14px;
+  border-radius: 8px;
   font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.btn-perfil {
-  background-color: #2c2d3c;
-  color: #fff;
+.btnPerfil:hover {
+  background: #334155;
+  border-color: #38bdf8;
 }
 
-.btn-logout {
-  background-color: #e74c3c;
-  color: #fff;
+.btnLogout {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.btn-login {
-  color: #fff;
+.btnLogout:hover {
+  background: #ef4444;
+  color: #ffffff;
 }
 
-.btn-registro {
-  background-color: #61dafb;
-  color: #000;
-  font-weight: bold;
+.btnLogin {
+  color: #f8fafc;
+  text-decoration: none;
+  padding: 7px 14px;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.btnLogin:hover {
+  color: #38bdf8;
+}
+
+.btnRegistro {
+  background: #38bdf8;
+  color: #0f172a;
+  text-decoration: none;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.btnRegistro:hover {
+  background: #7dd3fc;
 }
