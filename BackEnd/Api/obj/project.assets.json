@@ -1342,6 +1342,20 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "Aplicacao/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Dominio": "1.0.0",
+          "Repositorio": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Aplicacao.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Aplicacao.dll": {}
+        }
+      },
       "Dominio/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -3688,6 +3702,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Aplicacao/1.0.0": {
+      "type": "project",
+      "path": "../Aplicacao/Aplicacao.csproj",
+      "msbuildProject": "../Aplicacao/Aplicacao.csproj"
+    },
     "Dominio/1.0.0": {
       "type": "project",
       "path": "../Dominio/Dominio.csproj",
@@ -3701,6 +3720,7 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "Aplicacao >= 1.0.0",
       "BCrypt.Net-Next >= 4.2.0",
       "Dominio >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 10.0.13",
@@ -3739,6 +3759,9 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
+            "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Aplicacao\\Aplicacao.csproj": {
+              "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Aplicacao\\Aplicacao.csproj"
+            },
             "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\Dominio.csproj": {
               "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\ProjetoIFinaltera360\\BackEnd\\Dominio\\Dominio.csproj"
             },

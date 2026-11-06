@@ -2,12 +2,27 @@ using Microsoft.EntityFrameworkCore;
 using Repositorio.Contexto;
 using Repositorio.Interfaces;
 using Repositorio.Repositorios;
+using Aplicacao;
 using Repositorio;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Aplicacao.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Aplicacao
+builder.Services.AddScoped<IUsuarioAplicacao, UsuarioAplicacao>();
+builder.Services.AddScoped<IJogoAplicacao, JogoAplicacao>();
+builder.Services.AddScoped<IGuiaAplicacao, GuiaAplicacao>();
+
+//Repositorio
+
+builder.Services.AddScoped(typeof(IBaseRepositorio<>), typeof(BaseRepositorio<>));
+builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+builder.Services.AddScoped<IJogoRepositorio, JogoRepositorio>();
+builder.Services.AddScoped<IGuiaRepositorio, GuiaRepositorio>();
+
 
 var chaveJwt = builder.Configuration["Jwt:JogosIndiesSaoGeralmenteMelhores"] 
     ?? throw new InvalidOperationException("Chave JWT não configurada.");
@@ -46,12 +61,7 @@ builder.Services.AddDbContext<ProjetoDbContext>(options =>
         b => b.MigrationsAssembly("Api")
     ));
 
-builder.Services.AddScoped(typeof(IBaseRepositorio<>), typeof(BaseRepositorio<>));
-builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
-builder.Services.AddScoped<IJogoRepositorio, JogoRepositorio>();
-builder.Services.AddScoped<IGuiaRepositorio, GuiaRepositorio>();
-builder.Services.AddScoped<IComentarioRepositorio, ComentarioRepositorio>();
-builder.Services.AddScoped<IGuiaSalvoRepositorio, GuiaSalvoRepositorio>();
+
 
 builder.Services.AddOpenApi();
 

@@ -1,25 +1,24 @@
 using Api.DTOs.Jogos;
 using Dominio.Entidades;
-using Repositorio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
+using Aplicacao.Interfaces;
 namespace Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class JogoController : ControllerBase
 {
-    private readonly IJogoRepositorio _jogoRepositorio;
+    private readonly IJogoAplicacao _jogoAplicacao;
 
-    public JogoController(IJogoRepositorio jogoRepositorio)
+    public JogoController(IJogoAplicacao jogoAplicacao)
     {
-        _jogoRepositorio = jogoRepositorio;
+        _jogoAplicacao = jogoAplicacao;
     }
 
     [HttpGet]
     public async Task<IActionResult> ObterTodos()
     {
-        var jogos = await _jogoRepositorio.ObterTodosAsync();
+        var jogos = await _jogoAplicacao.ObterTodos();
 
         var jogosDto = jogos.Select(jogo => new JogoRespostaDTO
         {
@@ -35,9 +34,11 @@ public class JogoController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> ObterPorId(int id)
     {
-        var jogo = await _jogoRepositorio.ObterPorIdAsync(id);
+        var jogo = await _jogoAplicacao.ObterPorIdAsync(id);
         if (jogo == null)
+        {
             return NotFound("Jogo não encontrado.");
+        }
 
         var jogoDto = new JogoRespostaDTO
         {
@@ -51,64 +52,38 @@ public class JogoController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Criar([FromBody] JogoCriacaoDTO dto)
+    public IActionResult Criar([FromBody] JogoCriacaoDTO dto)
     {
-        var jogo = new Jogo
+        try
         {
-            NomeJogo = dto.NomeJogo,
-            Descricao = dto.Descricao,
-            CapaJogo = dto.CapaJogo
-        };
+            var jogoDominio = new Jogo()
+            {
+                NomeJogo = dto.NomeJogo,
+                Descricao = dto.Descricao,
+                CapaJogo = dto.CapaJogo
+            };
 
-        var novoJogo = await _jogoRepositorio.CriarAsync(jogo);
+            var jogoID = _jogoAplicacao.CriarAsync(jogoDominio);
 
-        var respostaDto = new JogoRespostaDTO
+            return Ok(jogoID);
+        }
+        catch (Exception ex)
         {
-            JogoId = novoJogo.JogoId,
-            NomeJogo = novoJogo.NomeJogo,
-            Descricao = novoJogo.Descricao,
-            CapaJogo = novoJogo.CapaJogo
-        };
-
-        return CreatedAtAction(nameof(ObterPorId), new { id = respostaDto.JogoId }, respostaDto);
+            return BadRequest(ex.Message);
+        }
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Atualizar(int id, [FromBody] JogoCriacaoDTO dto)
+    [HttpDelete("Deletar/{jogoId}")]
+    public IActionResult Deletar([FromRoute] int jogoId)
     {
-        var jogoExistente = await _jogoRepositorio.ObterPorIdAsync(id);
-        if (jogoExistente is null)
+        try
         {
-            return NotFound("Jogo não encontrado.");
+            _jogoAplicacao.ExcluirAsync(jogoId);
+            return Ok("Jogo removido com sucesso.");
         }
-
-        jogoExistente.NomeJogo = dto.NomeJogo;
-        jogoExistente.Descricao = dto.Descricao;
-        jogoExistente.CapaJogo = dto.CapaJogo;
-
-        await _jogoRepositorio.AtualizarAsync(jogoExistente);
-
-        var respostaDto = new JogoRespostaDTO
+        catch (Exception ex)
         {
-            JogoId = jogoExistente.JogoId,
-            NomeJogo = jogoExistente.NomeJogo,
-            Descricao = jogoExistente.Descricao,
-            CapaJogo = jogoExistente.CapaJogo
-        };
-
-        return Ok(respostaDto);
-    }
-
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Deletar(int id)
-    {
-        var jogoExistente = await _jogoRepositorio.ObterPorIdAsync(id);
-        if (jogoExistente is null)
-        {
-            return NotFound("Jogo não encontrado.");
+            return BadRequest(ex.Message);
         }
-
-        await _jogoRepositorio.ExcluirAsync(id);
-        return Ok("Jogo removido com sucesso.");
     }
 }

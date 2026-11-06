@@ -1,7 +1,7 @@
 using Api.DTOs.Usuarios;
 using Dominio.Entidades;
-using Repositorio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Aplicacao.Interfaces;
 
 namespace Api.Controllers;
 
@@ -9,17 +9,17 @@ namespace Api.Controllers;
 [Route("api/[controller]")]
 public class UsuarioController : ControllerBase
 {
-    private readonly IUsuarioRepositorio _usuarioRepositorio;
+    private readonly IUsuarioAplicacao _usuarioAplicacao;
 
-    public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+    public UsuarioController(IUsuarioAplicacao usuarioAplicacao)
     {
-        _usuarioRepositorio = usuarioRepositorio;
+        _usuarioAplicacao = usuarioAplicacao;
     }
 
     [HttpGet]
     public async Task<IActionResult> ObterTodos()
     {
-        var usuarios = await _usuarioRepositorio.ObterTodosAsync();
+        var usuarios = await _usuarioAplicacao.ObterTodos();
 
         var usuariosDto = usuarios.Select(usuario => new UsuarioRespostaDto
         {
@@ -34,7 +34,7 @@ public class UsuarioController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> ObterPorId(int id)
     {
-        var usuario = await _usuarioRepositorio.ObterPorIdAsync(id);
+        var usuario = await _usuarioAplicacao.ObterPorIdAsync(id);
         if (usuario == null)
             return NotFound("Usuário não encontrado.");
 
@@ -49,65 +49,61 @@ public class UsuarioController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Criar([FromBody] UsuarioCriacaoDto dto)
+    public IActionResult Criar([FromBody] UsuarioCriacaoDto dto)
     {
-        var usuario = new Usuario
+        try
         {
-            Nome = dto.Nome,
-            Email = dto.Email,
-            Senha = dto.Senha
-        };
+            var usuarioDominio = new Usuario()
+            {
+                Nome = dto.Nome,
+                Email = dto.Email,
+                Senha = dto.Senha
+            };
 
-        var novoUsuario = await _usuarioRepositorio.CriarAsync(usuario);
+            var usuarioID = _usuarioAplicacao.CriarAsync(usuarioDominio);
 
-        var respostaDto = new UsuarioRespostaDto
+            return Ok(usuarioID);
+        }
+        catch (Exception ex)
         {
-            Id = novoUsuario.UsuarioId,
-            Nome = novoUsuario.Nome,
-            Email = novoUsuario.Email
-        };
-
-        return CreatedAtAction(nameof(ObterPorId), new { id = respostaDto.Id }, respostaDto);
+            return BadRequest(ex.Message);
+        }
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Atualizar(int id, [FromBody] UsuarioAtualizacaoDTO dto)
+    [HttpPut]
+    public IActionResult Atualizar([FromBody] UsuarioAtualizacaoDTO dto)
     {
-        var usuarioExistente = await _usuarioRepositorio.ObterPorIdAsync(id);
-        if (usuarioExistente is null)
+        try
         {
-            return NotFound("Usuário não encontrado.");
+            var usuarioDominio = new Usuario()
+            {
+                UsuarioId = dto.Id,
+                Nome = dto.Nome,
+                Email = dto.Email,
+                Senha = dto.Senha
+            };
+
+            _usuarioAplicacao.AtualizarAsync(usuarioDominio);
+            return Ok();
         }
-
-        usuarioExistente.Nome = dto.Nome;
-        usuarioExistente.Email = dto.Email;
-        if (!string.IsNullOrEmpty(dto.Senha))
+        catch (Exception ex)
         {
-            usuarioExistente.Senha = dto.Senha;
+            return BadRequest(ex.Message);
         }
-
-        await _usuarioRepositorio.AtualizarAsync(usuarioExistente);
-
-        var respostaDto = new UsuarioRespostaDto
-        {
-            Id = usuarioExistente.UsuarioId,
-            Nome = usuarioExistente.Nome,
-            Email = usuarioExistente.Email
-        };
-
-        return Ok(respostaDto);
     }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Deletar(int id)
+    [HttpDelete("Deletar/{usuarioId}")]
+    public IActionResult Deletar([FromRoute] int usuarioId)
     {
-        var usuarioExistente = await _usuarioRepositorio.ObterPorIdAsync(id);
-        if (usuarioExistente is null)
+        try
         {
-            return NotFound("Usuário não encontrado.");
-        }
+            _usuarioAplicacao.ExcluirAsync(usuarioId);
 
-        await _usuarioRepositorio.ExcluirAsync(id);
-        return Ok("Usuário removido com sucesso.");
+            return Ok("Usuário removido com sucesso.");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }
