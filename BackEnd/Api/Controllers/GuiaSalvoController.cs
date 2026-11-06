@@ -1,6 +1,6 @@
 using Api.DTOs.GuiasSalvos;
 using Dominio.Entidades;
-using Dominio.Interfaces;
+using Repositorio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;

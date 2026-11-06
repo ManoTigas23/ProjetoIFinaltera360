@@ -1,5 +1,5 @@
 using Dominio.Entidades;
-using Dominio.Interfaces;
+using Repositorio.Interfaces;
 using Repositorio.Contexto;
 
 namespace Repositorio.Repositorios;

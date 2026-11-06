@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Repositorio.Contexto;
-using Dominio.Interfaces;
+using Repositorio.Interfaces;
 using Repositorio.Repositorios;
 using Repositorio;
 using System.Text;

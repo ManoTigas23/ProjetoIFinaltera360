@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Repositorio.Contexto;
-using Dominio.Interfaces;
+using Repositorio.Interfaces;
 
 namespace Repositorio;
 
@@ -20,15 +20,9 @@ public  class BaseRepositorio<T> : IBaseRepositorio<T> where T : class
         return entidade;
     }
 
-    public async Task<bool> ExcluirAsync(int id)
+    public async Task<bool> ExcluirAsync(T entidade)
     {
-        var entidadeExistente = await _contexto.Set<T>().FindAsync(id);
-        if (entidadeExistente is null)
-        {
-            return false;
-        }
-
-        _contexto.Set<T>().Remove(entidadeExistente);
+        _contexto.Set<T>().Remove(entidade);
         await _contexto.SaveChangesAsync();
         return true;
     }

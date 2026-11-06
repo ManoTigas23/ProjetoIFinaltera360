@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Api.DTOs.Auth;
 using Dominio.Entidades;
-using Dominio.Interfaces;
+using Repositorio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
